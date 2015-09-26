@@ -18,7 +18,12 @@ android {
         }
     }
 }
-
+repositories {
+    maven {
+        url 'https://dl.bintray.com/baole/maven'
+    }
+}
 dependencies {
-    compile project(':library')
+    compile 'com.anttek.foreground.widget:library:1.0.2@aar'
+//    compile project(':library')
 }

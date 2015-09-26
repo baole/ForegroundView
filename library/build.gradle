@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.anttek'
+group = 'com.anttek.foreground.widget'
 version = VERSION
 
 android {

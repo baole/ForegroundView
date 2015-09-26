@@ -15,7 +15,7 @@
  *
  */
 
-package com.anttek.foreground.internal;
+package com.anttek.foreground.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -29,15 +29,13 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.anttek.foreground.widget.R;
 
 /**
  * Created by Bao Le Duc on 9/26/2015.
  * Impl of foreground view delegation
  */
-public class ForegroundViewImlp   {
+ class ForegroundViewImlp   {
 
-    private final Context mContext;
     private final View mTargetView;
     private Drawable mForeground;
 
@@ -50,13 +48,12 @@ public class ForegroundViewImlp   {
 
     boolean mForegroundBoundsChanged = false;
 
-    public ForegroundViewImlp(Context context, View targetView) {
-        this.mContext = context;
+    public ForegroundViewImlp(View targetView) {
         this.mTargetView = targetView;
     }
 
-    public  void init(AttributeSet attrs, int defStyle) {
-        TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.ForegroundWidget,
+    public  void init(Context context, AttributeSet attrs, int defStyle) {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundWidget,
                 defStyle, 0);
 
         mForegroundGravity = a.getInt(

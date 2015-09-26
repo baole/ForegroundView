@@ -23,10 +23,9 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
-
-import com.anttek.foreground.internal.ForegroundViewImlp;
 
 /**
  * Created by Bao Le on 9/26/2015.
@@ -34,7 +33,7 @@ import com.anttek.foreground.internal.ForegroundViewImlp;
  */
 public class ForegroundRelativeLayout extends RelativeLayout {
 
-    private final ForegroundViewImlp mImpl;
+    private final ForegroundViewImlp mImpl = new ForegroundViewImlp(this);
 
     public ForegroundRelativeLayout(Context context) {
         this(context, null);
@@ -44,10 +43,22 @@ public class ForegroundRelativeLayout extends RelativeLayout {
         this(context, attrs, 0);
     }
 
+
     public ForegroundRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        mImpl = new ForegroundViewImlp(context, this);
-        mImpl.init(attrs, defStyle);
+        init(context, attrs, defStyle);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public ForegroundRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs, defStyleAttr);
+    }
+
+    private void init(Context context, AttributeSet attrs, int defStyle) {
+        if (mImpl != null) {
+            mImpl.init(context, attrs, defStyle);
+        }
     }
 
     /**
@@ -57,7 +68,11 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      * @see #setForegroundGravity(int)
      */
     public int getForegroundGravity() {
-        return mImpl.getForegroundGravity();
+        if (mImpl != null) {
+            return mImpl.getForegroundGravity();
+        }
+
+        return Gravity.FILL;
     }
 
     /**
@@ -67,24 +82,30 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      * @see #getForegroundGravity()
      */
     public void setForegroundGravity(int foregroundGravity) {
-        mImpl.setForegroundGravity(foregroundGravity);
+        if (mImpl != null) {
+            mImpl.setForegroundGravity(foregroundGravity);
+        }
     }
 
     @Override
     protected boolean verifyDrawable(Drawable who) {
-        return super.verifyDrawable(who) || mImpl.verifyDrawable(who);
+        return super.verifyDrawable(who) || (mImpl != null && mImpl.verifyDrawable(who));
     }
 
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        mImpl.jumpDrawablesToCurrentState();
+        if (mImpl != null) {
+            mImpl.jumpDrawablesToCurrentState();
+        }
     }
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        mImpl.drawableStateChanged();
+        if (mImpl != null) {
+            mImpl.drawableStateChanged();
+        }
     }
 
     /**
@@ -96,7 +117,10 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      * @param drawable The Drawable to be drawn on top of the children.
      */
     public void setForeground(Drawable drawable) {
-        mImpl.setForeground(drawable);
+        super.setForeground(drawable);
+        if (mImpl != null) {
+            mImpl.setForeground(drawable);
+        }
     }
 
     /**
@@ -112,24 +136,33 @@ public class ForegroundRelativeLayout extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        mImpl.onLayout(changed);
+        if (mImpl != null) {
+            mImpl.onLayout(changed);
+        }
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mImpl.onSizeChanged();
+        if (mImpl != null) {
+            mImpl.onSizeChanged();
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        mImpl.draw(canvas);
+        if (mImpl != null) {
+            mImpl.draw(canvas);
+        }
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        mImpl.onTouchEvent(e);
+        if (mImpl != null) {
+            mImpl.onTouchEvent(e);
+        }
         return super.onTouchEvent(e);
     }
 }
