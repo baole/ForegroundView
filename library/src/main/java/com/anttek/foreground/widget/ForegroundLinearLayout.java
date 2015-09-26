@@ -26,9 +26,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
+import com.anttek.foreground.internal.ForegroundViewImlp;
+
 /**
  * Created by Bao Le on 9/26/2015.
- * Add foreground to linear layout
+ * Add foreground to base view
  */
 public class ForegroundLinearLayout extends LinearLayout {
 

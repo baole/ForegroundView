@@ -24,7 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 
 import com.anttek.foreground.internal.ForegroundViewImlp;
 
@@ -32,19 +32,19 @@ import com.anttek.foreground.internal.ForegroundViewImlp;
  * Created by Bao Le on 9/26/2015.
  * Add foreground to base view
  */
-public class ForegroundRelativeLayout extends RelativeLayout {
+public class ForegroundListView extends ListView {
 
     private final ForegroundViewImlp mImpl;
 
-    public ForegroundRelativeLayout(Context context) {
+    public ForegroundListView(Context context) {
         this(context, null);
     }
 
-    public ForegroundRelativeLayout(Context context, AttributeSet attrs) {
+    public ForegroundListView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ForegroundRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
+    public ForegroundListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mImpl = new ForegroundViewImlp(context, this);
         mImpl.init(attrs, defStyle);
@@ -71,7 +71,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    public boolean verifyDrawable(Drawable who) {
         return super.verifyDrawable(who) || mImpl.verifyDrawable(who);
     }
 

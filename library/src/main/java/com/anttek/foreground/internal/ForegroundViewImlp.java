@@ -15,7 +15,7 @@
  *
  */
 
-package com.anttek.foreground.widget;
+package com.anttek.foreground.internal;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -29,14 +29,16 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.anttek.foreground.widget.R;
+
 /**
  * Created by Bao Le Duc on 9/26/2015.
  * Impl of foreground view delegation
  */
-class ForegroundViewImlp   {
+public class ForegroundViewImlp   {
 
-    private final Context context;
-    private final View target;
+    private final Context mContext;
+    private final View mTargetView;
     private Drawable mForeground;
 
     private final Rect mSelfBounds = new Rect();
@@ -48,13 +50,13 @@ class ForegroundViewImlp   {
 
     boolean mForegroundBoundsChanged = false;
 
-    ForegroundViewImlp(Context context, View targetView) {
-        this.context = context;
-        this.target = targetView;
+    public ForegroundViewImlp(Context context, View targetView) {
+        this.mContext = context;
+        this.mTargetView = targetView;
     }
 
-    void init(AttributeSet attrs, int defStyle) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundWidget,
+    public  void init(AttributeSet attrs, int defStyle) {
+        TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.ForegroundWidget,
                 defStyle, 0);
 
         mForegroundGravity = a.getInt(
@@ -77,7 +79,7 @@ class ForegroundViewImlp   {
      * @return foreground gravity.
      * @see #setForegroundGravity(int)
      */
-    int getForegroundGravity() {
+    public int getForegroundGravity() {
         return mForegroundGravity;
     }
 
@@ -87,7 +89,7 @@ class ForegroundViewImlp   {
      * @param foregroundGravity See {@link android.view.Gravity}
      * @see #getForegroundGravity()
      */
-    void setForegroundGravity(int foregroundGravity) {
+    public void setForegroundGravity(int foregroundGravity) {
         if (mForegroundGravity != foregroundGravity) {
             if ((foregroundGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
                 foregroundGravity |= Gravity.START;
@@ -105,21 +107,21 @@ class ForegroundViewImlp   {
                 mForeground.getPadding(padding);
             }
 
-            target.requestLayout();
+            mTargetView.requestLayout();
         }
     }
 
-    boolean verifyDrawable(Drawable who) {
+    public boolean verifyDrawable(Drawable who) {
         return who == mForeground;
     }
 
-    void jumpDrawablesToCurrentState() {
+    public void jumpDrawablesToCurrentState() {
         if (mForeground != null) mForeground.jumpToCurrentState();
     }
 
-    void drawableStateChanged() {
+    public void drawableStateChanged() {
         if (mForeground != null && mForeground.isStateful()) {
-            mForeground.setState(target.getDrawableState());
+            mForeground.setState(mTargetView.getDrawableState());
         }
     }
 
@@ -131,30 +133,30 @@ class ForegroundViewImlp   {
      *
      * @param drawable The Drawable to be drawn on top of the children.
      */
-    void setForeground(Drawable drawable) {
+    public void setForeground(Drawable drawable) {
         if (mForeground != drawable) {
             if (mForeground != null) {
                 mForeground.setCallback(null);
-                target.unscheduleDrawable(mForeground);
+                mTargetView.unscheduleDrawable(mForeground);
             }
 
             mForeground = drawable;
 
             if (drawable != null) {
-                target.setWillNotDraw(false);
-                drawable.setCallback(target);
+                mTargetView.setWillNotDraw(false);
+                drawable.setCallback(mTargetView);
                 if (drawable.isStateful()) {
-                    drawable.setState(target.getDrawableState());
+                    drawable.setState(mTargetView.getDrawableState());
                 }
                 if (mForegroundGravity == Gravity.FILL) {
                     Rect padding = new Rect();
                     drawable.getPadding(padding);
                 }
             } else {
-                target.setWillNotDraw(true);
+                mTargetView.setWillNotDraw(true);
             }
-            target.requestLayout();
-            target.invalidate();
+            mTargetView.requestLayout();
+            mTargetView.invalidate();
         }
     }
 
@@ -164,21 +166,21 @@ class ForegroundViewImlp   {
      *
      * @return A Drawable or null if no foreground was set.
      */
-    Drawable getForeground() {
+    public  Drawable getForeground() {
         return mForeground;
     }
 
-    void onLayout(boolean changed) {
+    public void onLayout(boolean changed) {
         if (changed) {
             mForegroundBoundsChanged = true;
         }
     }
 
-    void onSizeChanged() {
+    public  void onSizeChanged() {
         mForegroundBoundsChanged = true;
     }
 
-    void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
 
         if (mForeground != null) {
             final Drawable foreground = mForeground;
@@ -188,14 +190,14 @@ class ForegroundViewImlp   {
                 final Rect selfBounds = mSelfBounds;
                 final Rect overlayBounds = mOverlayBounds;
 
-                final int w = target.getRight() - target.getLeft();
-                final int h = target.getBottom() - target.getTop();
+                final int w = mTargetView.getRight() - mTargetView.getLeft();
+                final int h = mTargetView.getBottom() - mTargetView.getTop();
 
                 if (mForegroundInPadding) {
                     selfBounds.set(0, 0, w, h);
                 } else {
-                    selfBounds.set(target.getPaddingLeft(), target.getPaddingTop(),
-                            w - target.getPaddingRight(), h - target.getPaddingBottom());
+                    selfBounds.set(mTargetView.getPaddingLeft(), mTargetView.getPaddingTop(),
+                            w - mTargetView.getPaddingRight(), h - mTargetView.getPaddingBottom());
                 }
 
                 Gravity.apply(mForegroundGravity, foreground.getIntrinsicWidth(),
@@ -208,7 +210,7 @@ class ForegroundViewImlp   {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    void onTouchEvent(MotionEvent e) {
+    public void onTouchEvent(MotionEvent e) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (e.getActionMasked() == MotionEvent.ACTION_DOWN) {
                 if (mForeground != null)
