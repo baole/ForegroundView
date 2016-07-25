@@ -34,7 +34,7 @@ import android.view.View;
  * Created by Bao Le Duc on 9/26/2015.
  * Impl of foreground view delegation
  */
- class ForegroundViewImlp   {
+ public class ForegroundViewImlp   {
 
     private final View mTargetView;
     private Drawable mForeground;

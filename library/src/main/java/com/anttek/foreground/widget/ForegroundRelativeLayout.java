@@ -23,7 +23,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
@@ -72,7 +71,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
             return mImpl.getForegroundGravity();
         }
 
-        return Gravity.FILL;
+        return super.getForegroundGravity();
     }
 
     /**

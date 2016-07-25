@@ -26,7 +26,7 @@ repositories {
     }
 }
 dependencies {
-    compile 'com.anttek.foreground.widget:library:1.0.2@aar'
+    compile 'com.anttek.foreground.widget:library:1.1.0@aar'
 }
 ```
 
@@ -57,7 +57,7 @@ Checkout sample app to see more detail
 # License
 ```
 /*
- * Copyright (C) 2015  Bao Le Duc
+ * Copyright (C) 2015, 2016  Bao Le Duc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
