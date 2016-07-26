@@ -15,7 +15,7 @@
  *
  */
 
-package com.anttek.foreground.sample;
+package com.anttek.boundedview.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import android.os.Bundle;
 /**
  * Created by Bao Le Duc on 9/26/2015.
  */
-public class ForegroundViewSample extends Activity{
+public class BoundedViewSample extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,7 +5,7 @@ android {
     buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
-        applicationId "com.anttek.foreground.sample"
+        applicationId "com.anttek.boundedview.sample"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
@@ -24,6 +24,5 @@ repositories {
     }
 }
 dependencies {
-    compile 'com.anttek.foreground.widget:library:1.0.2@aar'
-//    compile project(':library')
+    compile project(':library')
 }

@@ -14,41 +14,18 @@
   ~ limitations under the License.
   ~
   -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.anttek.boundedview.BoundedLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:boundedHeight="100dp"
+        app:boundedWidth="100dp"
+        android:layout_height="match_parent"
+        android:background="#ffff00"/>
 
-        <com.anttek.foreground.widget.ForegroundLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:foreground="@drawable/foreground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:layout_height="wrap_content"
-                android:text="This is ForegroundLinearLayout" />
-        </com.anttek.foreground.widget.ForegroundLinearLayout>
-
-
-        <com.anttek.foreground.widget.ForegroundRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:foreground="@drawable/foreground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:text="This is ForegroundRelativeLayout" />
-        </com.anttek.foreground.widget.ForegroundRelativeLayout>
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

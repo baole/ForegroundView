@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.anttek.foreground.widget'
+group = 'com.anttek.boundedview'
 version = VERSION
 
 android {
@@ -23,8 +23,6 @@ android {
     }
 }
 
-dependencies {
-}
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -54,18 +52,18 @@ bintray {
     key = BINTRAY_KEY
     pkg {
         repo = 'maven'
-        name = 'com.anttek.foreground.widget'
+        name = 'com.anttek.boundedview'
 
         version {
             name = VERSION
-            desc = 'Foregroundview'
+            desc = 'A collection of views that constraint on boundedWidth, boundedHeight'
             released  = new Date()
             vcsTag = VERSION
         }
 
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/baole/ForegroundView.git'
-        websiteUrl = 'https://github.com/baole/ForegroundView'
+        vcsUrl = 'https://github.com/baole/BoundedViews.git'
+        websiteUrl = 'https://github.com/baole/BoundedViews'
     }
     configurations = ['archives']
 }
