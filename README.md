@@ -1,20 +1,21 @@
-# BoundedView
-A collection of Android bounded views which constraint in boundedWidth/boundedHeight. This library helps to resolve android:maxWidth and layout_width="match_parent" not working together.
-Support following views and viewgroups
-* BoundedImageView
-* BoundedButton
-* BoundedTextView
-* BoundedImageButton
-* BoundedEditText
-* BoundedWebView
-* BoundedLinearLayout
-* BoundedRelativeLayout
-* BoundedGridLayout
-* BoundedGridView
-* BoundedHorizontalScrollView
-* BoundedListView
-* BoundedScrollView
+# ForegroundView
+A collection of Android foreground-enabled views just like FrameLayout. Support following views and viewgroups
+* ForegroundImageView
+* ForegroundButton
+* ForegroundTextView
+* ForegroundImageButton
+* ForegroundEditText
+* ForegroundWebView
+* ForegroundLinearLayout
+* ForegroundRelativeLayout
+* ForegroundGridLayout
+* ForegroundGridView
+* ForegroundHorizontalScrollView
+* ForegroundListView
+* ForegroundScrollView
 
+# Screenshots
+![GitHub Logo](https://lh6.googleusercontent.com/-afY-VQnVodw/Vga8AjKwFkI/AAAAAAAAMko/RtCMUSkNsqY/w487-h865-no/Screenshot_20150926-223701.png)
 
 # Setup
 Add as a dependency to your ``build.gradle``:
@@ -25,36 +26,38 @@ repositories {
     }
 }
 dependencies {
-    compile 'com.anttek.bounded:library:1.0@aar'
+    compile 'com.anttek.foreground.widget:library:1.0.2@aar'
 }
 ```
 
 # Usages
 
-Add Boundedxxx to your layout.xml
+Add Foregroundxxx to your layout.xml
 
 ```
-    <com.anttek.boundedview.BoundedLinearLayout
-        android:layout_width="match_parent"
-        app:boundedHeight="100dp"
-        app:boundedWidth="100dp"
-        android:layout_height="match_parent"
-        android:background="#ffff00"/>
+        <com.anttek.foreground.widget.ForegroundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:foreground="@drawable/foreground">
+            //child views
+        </com.anttek.foreground.widget.ForegroundLinearLayout>
 ```
-Bounded view supports 3 additional attributes that you can define in layout file
+Foreground view supports 3 additional attributes that you can define in layout file
 
-* android:boundedWidth
-* android:boundedHeight
+* android:foreground
+* android:foregroundInsidePadding
+* android:foregroundGravity
 
-This library supports for common views included in Android SDK. If you need to implement for others views
-such as in support library, using BoundedViewHelper. See BoundedLinearLayout as an example.
+Alternatively, you can use Java method to change foreground attributes at runtime:
+* setForeground(Drawable)
+* setForegroundGravity(int)
 
 Checkout sample app to see more detail
 
 # License
 ```
 /*
- * Copyright (C) 2016  Bao Le Duc
+ * Copyright (C) 2015  Bao Le Duc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
