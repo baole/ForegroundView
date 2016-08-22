@@ -26,7 +26,7 @@ repositories {
     }
 }
 dependencies {
-    compile 'com.anttek.foreground.widget:library:1.0.2@aar'
+    compile 'com.anttek.foreground.widget:library:1.1.0@aar'
 }
 ```
 
