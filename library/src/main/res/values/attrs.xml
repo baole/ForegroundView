@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="ForegroundWidget">
         <attr name="android:foreground" />
-        <attr name="android:foregroundInsidePadding" />
+        <attr name="foregroundInsidePadding" />
         <attr name="android:foregroundGravity" />
     </declare-styleable>
 </resources>

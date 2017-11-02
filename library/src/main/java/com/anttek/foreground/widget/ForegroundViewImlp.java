@@ -65,7 +65,7 @@ import android.view.View;
         }
 
         mForegroundInPadding = a.getBoolean(
-                R.styleable.ForegroundWidget_android_foregroundInsidePadding, true);
+                R.styleable.ForegroundWidget_foregroundInsidePadding, true);
 
         a.recycle();
     }

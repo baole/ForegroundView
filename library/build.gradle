@@ -6,12 +6,12 @@ group = 'com.anttek.foreground.widget'
 version = VERSION
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
